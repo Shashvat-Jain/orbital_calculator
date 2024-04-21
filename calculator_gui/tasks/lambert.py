@@ -165,7 +165,6 @@ def _tof_equation_y(x, y, T0, ll, M):
 
 
 def _tof_equation_p(x, y, T, ll):
-    # TODO: What about derivatives when x approaches 1?
     return (3 * T * x - 2 + 2 * ll**3 * x / y) / (1 - x**2)
 
 
@@ -233,7 +232,7 @@ def _halley(p0, T0, ll, atol, rtol, maxiter):
     this module and is not really reusable.
 
     """
-    for ii in range(1, maxiter + 1):
+    for _ in range(1, maxiter + 1):
         y = _compute_y(p0, ll)
         fder = _tof_equation_p(p0, y, T0, ll)
         fder2 = _tof_equation_p2(p0, y, T0, fder, ll)
