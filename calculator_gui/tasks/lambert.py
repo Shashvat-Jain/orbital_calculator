@@ -13,7 +13,7 @@ from scipy.special import hyp2f1
 # from lamberthub.utils.assertions import assert_parameters_are_valid
 
 
-def lambert(
+def main(
     mu,
     r1,
     r2,
@@ -132,7 +132,7 @@ def _compute_psi(x, y, ll):
         # Elliptic motion
         # Use arc cosine to avoid numerical errors
         return np.arccos(x * y + ll * (1 - x**2))
-    elif x > 1:
+    if x > 1:
         # Hyperbolic motion
         # The hyperbolic sine is bijective
         return np.arcsinh((y - x * ll) * np.sqrt(x**2 - 1))
@@ -211,19 +211,16 @@ def _initial_guess(T, ll, M, low_path):
             x_0 = (T_0 / T) ** (np.log2(T_1 / T_0)) - 1
 
         return x_0
-    else:
-        # Multiple revolution
-        x_0l = (((M * pi + pi) / (8 * T)) ** (2 / 3) - 1) / (
-            ((M * pi + pi) / (8 * T)) ** (2 / 3) + 1
-        )
-        x_0r = (((8 * T) / (M * pi)) ** (2 / 3) - 1) / (
-            ((8 * T) / (M * pi)) ** (2 / 3) + 1
-        )
+    # Multiple revolution
+    x_0l = (((M * pi + pi) / (8 * T)) ** (2 / 3) - 1) / (
+        ((M * pi + pi) / (8 * T)) ** (2 / 3) + 1
+    )
+    x_0r = (((8 * T) / (M * pi)) ** (2 / 3) - 1) / (((8 * T) / (M * pi)) ** (2 / 3) + 1)
 
-        # Filter out the solution
-        x_0 = np.max([x_0l, x_0r]) if low_path is True else np.min([x_0l, x_0r])
+    # Filter out the solution
+    x_0 = np.max([x_0l, x_0r]) if low_path is True else np.min([x_0l, x_0r])
 
-        return x_0
+    return x_0
 
 
 def _halley(p0, T0, ll, atol, rtol, maxiter):

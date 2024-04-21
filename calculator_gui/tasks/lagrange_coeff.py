@@ -9,7 +9,7 @@ ADMISSION NO. - 20JE0897
 def sc(z):
     if z > 0:
         return (1 - math.cos(math.sqrt(z))) / z
-    elif z < 0:
+    if z < 0:
         return (math.cosh(math.sqrt(-z)) - 1) / (-z)
     else:
         return 1 / 2
@@ -18,13 +18,13 @@ def sc(z):
 def ss(z):
     if z > 0:
         return (math.sqrt(z) - math.sin(math.sqrt(z))) / (math.sqrt(z)) ** 3
-    elif z < 0:
+    if z < 0:
         return (math.sinh(math.sqrt(-z)) - math.sqrt(-z)) / (math.sqrt(-z)) ** 3
     else:
         return 1 / 6
 
 
-def lagrange_coeff(m, x, t, r, ro, a):
+def main(m, x, t, r, ro, a):
     z = a * x * x
     f = 1 - (x * x / ro) * sc(z)
     g = t - (1 / math.sqrt(m)) * x * x * x * ss(z)
