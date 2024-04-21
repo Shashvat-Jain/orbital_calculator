@@ -1,9 +1,9 @@
-import math
-
 """
 NAME - SHASHVAT JAIN 
 ADMISSION NO. - 20JE0897
 """
+
+import math
 
 
 def sc(z):
@@ -22,7 +22,7 @@ def ss(z):
     return 1 / 6
 
 
-def main(m, x, t, r, ro, a):
+def main(m: float, x: float, t: float, r: float, ro: float, a: float) -> list[float]:
     z = a * x * x
     f = 1 - (x * x / ro) * sc(z)
     g = t - (1 / math.sqrt(m)) * x * x * x * ss(z)

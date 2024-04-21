@@ -9,16 +9,16 @@ import numpy as np
 from numpy import cross, pi
 from numpy.linalg import norm
 
-# from scipy.special import hyp2f1
+from scipy.special import hyp2f1
 
 # from lamberthub.utils.assertions import assert_parameters_are_valid
 
 
 def main(
-    mu,
-    r1,
-    r2,
-    tof,
+    mu: float,
+    r1: list[float],
+    r2: list[float],
+    tof: float,
     M=0,
     prograde=True,
     low_path=True,
@@ -26,7 +26,7 @@ def main(
     atol=1e-5,
     rtol=1e-7,
     full_output=False,
-):
+) -> list[list[float], list[float]]:
 
     # Check that input parameters are safe
     # assert_parameters_are_valid(mu, r1, r2, tof, M)
