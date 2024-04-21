@@ -8,7 +8,8 @@ import time
 import numpy as np
 from numpy import cross, pi
 from numpy.linalg import norm
-from scipy.special import hyp2f1
+
+# from scipy.special import hyp2f1
 
 # from lamberthub.utils.assertions import assert_parameters_are_valid
 
@@ -136,9 +137,9 @@ def _compute_psi(x, y, ll):
         # Hyperbolic motion
         # The hyperbolic sine is bijective
         return np.arcsinh((y - x * ll) * np.sqrt(x**2 - 1))
-    else:
-        # Parabolic motion
-        return 0.0
+    # else:
+    # Parabolic motion
+    return 0.0
 
 
 def _tof_equation(x, T0, ll, M):
@@ -242,7 +243,7 @@ def _halley(p0, T0, ll, atol, rtol, maxiter):
 
         # Halley step (cubic)
         p = p0 - 2 * fder * fder2 / (2 * fder2**2 - fder * fder3)
-
+        # print(ii)
         if abs(p - p0) < rtol * np.abs(p0) + atol:
             return p
         p0 = p

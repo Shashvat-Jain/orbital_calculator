@@ -11,8 +11,7 @@ def sc(z):
         return (1 - math.cos(math.sqrt(z))) / z
     if z < 0:
         return (math.cosh(math.sqrt(-z)) - 1) / (-z)
-    else:
-        return 1 / 2
+    return 1 / 2
 
 
 def ss(z):
@@ -20,8 +19,7 @@ def ss(z):
         return (math.sqrt(z) - math.sin(math.sqrt(z))) / (math.sqrt(z)) ** 3
     if z < 0:
         return (math.sinh(math.sqrt(-z)) - math.sqrt(-z)) / (math.sqrt(-z)) ** 3
-    else:
-        return 1 / 6
+    return 1 / 6
 
 
 def main(m, x, t, r, ro, a):
